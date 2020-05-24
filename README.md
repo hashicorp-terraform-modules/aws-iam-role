@@ -43,24 +43,26 @@ module "s3_bucket_example" {
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | create_profile | (Optional) Whether or not to create an instance profile of the role | bool | false | no |
-| instance_profile_name | (Optional) Name to give the instance profile (defaults to the same as the role name) | string | null | no |
+| instance_profile_name | (Optional, Forces new resource) The name of the instance profile. If omitted, Terraform will assign a random, unique name. Conflicts with *instance_profile_name_prefix*. | string | null | no |
+| instance_profile_name_prefix| (Optional, Forces new resource) Creates a unique instance profile name beginning with the specified prefix. Conflicts with *instance_profile_name*. | string | null | no |
 
 ### AWS IAM Role (aws_iam_role)
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | description | (Optional) The description to give to the role | string | N/A | no |
-| iam_role_name | (Optional, Forces new resource) The name of the role. If omitted, Terraform will assign a random, unique name. Conflicts with *name_prefix*. | string | null | no |
-| iam_role_name_prefix | (Optional, Forces new resource) Creates a unique name beginning with the specified prefix. Conflicts with *name*. | string | null | no |
+| iam_role_name | (Optional, Forces new resource) The name of the role. If omitted, Terraform will assign a random, unique name. Conflicts with *iam_role_name_prefix*. | string | null | no |
+| iam_role_name_prefix | (Optional, Forces new resource) Creates a unique role name beginning with the specified prefix. Conflicts with *iam_role_name*. | string | null | no |
 | path | (Optional) The path to the role | string | / | no |
 | service | Service that needs access to assume the role (e.g. ec2.amazonaws.com) | string | N/A | yes |
-| tags | (Optional) A mapping of additional tags to assign to the IAM role. (A 'Name' tag is added based on name or name_prefix) | map(string) | Name | no |
+| tags | (Optional) A mapping of additional tags to assign to the IAM role. (A 'Name' tag is added based on *iam_role_name* or *iam_role_name_prefix* if given) | map(string) | Name | no |
 
 ### AWS IAM Role Policy (aws_iam_role_policy)
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| iam_policy_name | (Optional) A list of filtering objects that accepts a prefix, set of tags or both. Unique identifier of the metrics configuration to create for the bucket. | string | null | no |
+| iam_policy_name | (Optional, Forces new resource) The name of the inline policy. If omitted, Terraform will assign a random, unique name. Conflicts with *iam_policy_name_prefix*. | string | null | no |
+| iam_policy_name_prefix | (Optional, Forces new resource) Creates a unique inline policy name beginning with the specified prefix. Conflicts with *iam_policy_name*. | string | null | no |
 | policy | (Required) The inline policy document. This is a JSON formatted string | string | N/A | yes |
 
 ## Outputs
