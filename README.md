@@ -42,37 +42,35 @@ module "s3_bucket_example" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| create\_profile | (Optional) Whether or not to create an instance profile of the role | bool | false | no |
+| create_profile | (Optional) Whether or not to create an instance profile of the role | bool | false | no |
 | instance_profile_name | (Optional) Name to give the instance profile (defaults to the same as the role name) | string | null | no |
 
 ### AWS IAM Role (aws_iam_role)
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| iam\_role_name | (Optional, Forces new resource) The name of the role. If omitted, Terraform will assign a random, unique name. Conflicts with name\_prefix. | string | null | no |
-| iam\_role\_name\_prefix | (Optional, Forces new resource) Creates a unique name beginning with the specified prefix. Conflicts with name. | string | null | no |
 | description | (Optional) The description to give to the role | string | N/A | no |
+| iam_role_name | (Optional, Forces new resource) The name of the role. If omitted, Terraform will assign a random, unique name. Conflicts with *name_prefix*. | string | null | no |
+| iam_role_name_prefix | (Optional, Forces new resource) Creates a unique name beginning with the specified prefix. Conflicts with *name*. | string | null | no |
 | path | (Optional) The path to the role | string | / | no |
 | service | Service that needs access to assume the role (e.g. ec2.amazonaws.com) | string | N/A | yes |
-| tags | (Optional) A mapping of additional tags to assign to the IAM role. (A 'Name' tag is added based on name or name\_prefix) | map(string) | Name | no |
+| tags | (Optional) A mapping of additional tags to assign to the IAM role. (A 'Name' tag is added based on name or name_prefix) | map(string) | Name | no |
 
 ### AWS IAM Role Policy (aws_iam_role_policy)
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| iam\_policy\_name | (Optional) A list of filtering objects that accepts a prefix, set of tags or both. Unique identifier of the metrics configuration to create for the bucket. | string | null | no |
+| iam_policy_name | (Optional) A list of filtering objects that accepts a prefix, set of tags or both. Unique identifier of the metrics configuration to create for the bucket. | string | null | no |
 | policy | (Required) The inline policy document. This is a JSON formatted string | string | N/A | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| arn | The ARN of the bucket created |
-| dns | The DNS domain name of the bucket created |
-| name | The Name of the bucket created |
-| region | The AWS region this bucket resides in |
-| website\_endpoint | The website endpoint, if the bucket is configured with a website. If not, this will be an empty string |
-| website\_domain | The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records |
+| iam_role_arn | The ARN of the IAM role created |
+| iam_role_name | The name of the IAM role created |
+| instance_profile_arn | The ARN of the instance profile created |
+| instance_profile_name | The name of the instance profile created |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
