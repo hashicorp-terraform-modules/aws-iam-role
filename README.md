@@ -23,14 +23,14 @@ These types of resources are supported:
 ## Usage
 
 ```hcl
-module "s3_bucket_example" {
+module "iam_role_example" {
   source = "git@github.com:hashicorp-terraform-modules/aws-iam-role.git?ref=v0.0.0"
 
-  create_profile        = "true"  # create instance profile from the role
+  create_profile        = true  # create instance profile from the role
   description           = "My role's description"
   policy                = file("${path.module}/templates/my-iam-policy.json")
   service               = "ec2.amazonaws.com"
-  tags                  = "${local.tags}"
+  tags                  = local.tags
   iam_role_name         = "my-role"
 }
 ```
