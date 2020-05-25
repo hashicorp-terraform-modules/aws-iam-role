@@ -4,7 +4,7 @@
 # Resources #
 
 resource "aws_iam_instance_profile" "this" {
-  count       = var.create_profile == "true" ? 1 : 0
+  count       = var.create_profile ? 1 : 0
   name        = var.instance_profile_name != null ? var.instance_profile_name : var.iam_role_name != null ? var.iam_role_name : null
   name_prefix = var.instance_profile_name_prefix != null ? var.instance_profile_name_prefix : var.iam_role_name_prefix != null ? var.iam_role_name_prefix : null
   role        = aws_iam_role.this.name
