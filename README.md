@@ -32,6 +32,7 @@ module "iam_role_example" {
   service               = "ec2.amazonaws.com"
   tags                  = local.tags
   iam_role_name         = "my-role"
+  iam_policy_name       = "my-policy"
 }
 ```
 
